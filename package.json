@@ -1,0 +1,17 @@
+{
+  "name": "scam-script-bench",
+  "version": "0.1.0",
+  "description": "A small, open, synthetic benchmark for payment-pressure scam detection, with deliberately hard benign and scam cases.",
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "score": "node scripts/score.mjs",
+    "test": "node --test \"test/**/*.test.mjs\""
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}
