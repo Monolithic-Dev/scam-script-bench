@@ -131,3 +131,11 @@ test('similarity helper: identical texts match, different texts do not', () => {
   assert.equal(jaccard(shingles('buy gift cards today now'), shingles('buy gift cards today now')), 1);
   assert.ok(jaccard(shingles('buy gift cards today now'), shingles('your appointment is on thursday')) < 0.1);
 });
+
+test('test2 has 20 scam and 20 benign records with hard cases, and validates', () => {
+  const rows = readJsonl(join(root, 'data', 'test2.jsonl'));
+  assert.equal(rows.length, 40);
+  assert.equal(rows.filter((r) => r.label === 'scam').length, 20);
+  assert.ok(rows.filter((r) => r.label === 'benign' && r.difficulty === 'tricky').length >= 8);
+  assert.deepEqual(validate({ test2: join(root, 'data', 'test2.jsonl') }), []);
+});

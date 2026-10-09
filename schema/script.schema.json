@@ -6,8 +6,8 @@
   "additionalProperties": false,
   "required": ["id", "split", "label", "category", "channel", "text", "difficulty", "author"],
   "properties": {
-    "id": { "type": "string", "pattern": "^[dt]-\\d{3}$" },
-    "split": { "enum": ["dev", "test"] },
+    "id": { "type": "string", "pattern": "^[dtu]-\\d{3}$" },
+    "split": { "enum": ["dev", "test", "test2"] },
     "label": { "enum": ["scam", "benign"] },
     "category": {
       "enum": [
