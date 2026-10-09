@@ -12,6 +12,7 @@ Most scam-detector demos report no numbers. This gives a tiny, honest yardstick:
 |---|---|
 | `data/dev.jsonl` | 30 scripts (15 scam / 15 benign) for building detectors |
 | `data/test.jsonl` | 30 scripts (15 / 15), frozen, different author, run once |
+| `data/test2.jsonl` | 40 scripts (20 / 20) added later as a fresh held-out split (`u-` ids, author `team-v2`). Written before the detector was re-tuned; see the second-opinion eval report |
 | `schema/script.schema.json` | JSON Schema for one record |
 | `scripts/validate.mjs` | Validates files against the schema and split rules |
 | `scripts/score.mjs` | Scores a predictions file against labels |
