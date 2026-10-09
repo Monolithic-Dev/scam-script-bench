@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Monolithic-Dev/scam-script-bench/schema/script.schema.json",
+  "title": "scam-script-bench record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "split", "label", "category", "channel", "text", "difficulty", "author"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[dt]-\\d{3}$" },
+    "split": { "enum": ["dev", "test"] },
+    "label": { "enum": ["scam", "benign"] },
+    "category": {
+      "enum": [
+        "gift_card", "wire_crypto", "bank_impersonation", "government_impersonation", "tech_support_remote",
+        "family_emergency", "prize_lottery", "verification_code", "delivery_fee", "romance_investment",
+        "bank_alert_genuine", "pharmacy", "utility_bill", "delivery_genuine", "family_chat", "subscription_receipt", "appointment_reminder"
+      ]
+    },
+    "channel": { "enum": ["call", "sms", "email", "voice", "unknown"] },
+    "text": { "type": "string", "minLength": 1, "maxLength": 600 },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "actionType": { "enum": ["purchase", "payment", "transfer", "none"] },
+        "amountCents": { "type": "integer", "minimum": 0, "maximum": 10000000 },
+        "payee": { "type": "string", "maxLength": 100 },
+        "trusted": { "type": "boolean" }
+      }
+    },
+    "difficulty": { "enum": ["easy", "tricky"] },
+    "author": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "notes": { "type": "string", "maxLength": 200 }
+  }
+}
