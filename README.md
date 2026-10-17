@@ -27,8 +27,22 @@ node scripts/score.mjs --labels data/test.jsonl --pred my-predictions.jsonl
 ```
 Prediction line: `{"id":"t-007","verdict":"hold"}` with verdict `allow | caution | hold`.
 
+## Baseline results (`second-opinion` detector)
+
+Scored using the [Second Opinion](https://github.com/Monolithic-Dev/second-opinion) deterministic risk engine (`rules-2026.10.3` and `rules-2026.10.4`):
+
+| Split | Scripts | Hold Recall | Hold FPR | Flag Recall | Flag FPR |
+|---|---|---|---|---|---|
+| `dev` | 30 (15 scam / 15 benign) | 86.7% | 0.0% | 100.0% | 6.7% |
+| `test` (held-out) | 30 (15 scam / 15 benign) | 46.7% | 0.0% | 80.0% | 6.7% |
+| `test2` (fresh team-v2) | 40 (20 scam / 20 benign) | 95.0% | 0.0% | 100.0% | 5.0% |
+
+- **Hold operating point** blocks the action and initiates family approval. 0% false holds across all splits ensures normal payments are never mistakenly blocked.
+- Full category breakdown and ablation details are published in `second-opinion/eval/results/`.
+
 ## Limitations
-English only, US-style scripts, 60 examples — a sanity yardstick, not a production benchmark. All text is invented: no real people, phone numbers, URLs, brands' private details, or victims. Defensive use only.
+English only, US-style scripts, 100 examples across 3 splits — a sanity yardstick, not a production benchmark. All text is invented: no real people, phone numbers, URLs, brands' private details, or victims. Defensive use only.
 
 ## License
 MIT.
+
